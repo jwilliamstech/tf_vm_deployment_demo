@@ -1,3 +1,8 @@
+variable "localhost_ip" {
+  description = "IP address of the local host"
+  type        = string
+}
+
 # ========================== service principal ========================================
 
 variable "sp-subscription-id" {
@@ -62,13 +67,13 @@ variable "spoke_rg_location" {
 variable "vnet_suffix" {
   type        = string
   default     = "vnet"
-  description = "Suffix of the virtual network name that's combined with name of the virtual network."
+  description = "Suffix of the virtual resource that's combined with name of the virtual network."
 }
 
 variable "subnet_suffix" {
   type        = string
   default     = "subnet"
-  description = "Suffix of the subnet name that's combined with name of the subnet."
+  description = "Suffix of the subnet resource that's combined with name of the subnet."
 }
 
 variable "hub_vnet_name" {
@@ -104,7 +109,7 @@ variable "hub_gateway_subnet_name" {
 variable "hub_gateway_subnet_address_prefixes" {
   description = "Specifies the address space of the hub gateway subnet"
   type        = list(string)
-  default     = [""]
+  #default     = [""]
 }
 
 variable "hub_endpoint_subnet_name" {
@@ -113,10 +118,16 @@ variable "hub_endpoint_subnet_name" {
   default     = "tf-vm-hub-endpoint"
 }
 
+/*variable "hub_endpoint_subnet_prefixes" {
+  description = "Specifies the address space of the hub endpoint subnet"
+  type        = list(string)
+  #default     = [""]
+}*/
+
 variable "hub_endpoint_subnet_address_prefixes" {
   description = "Specifies the address space of the hub endpoint subnet"
   type        = list(string)
-  default     = [""]
+  #default     = [""]
 }
 
 variable "spoke_vnet_name" {
@@ -128,7 +139,7 @@ variable "spoke_vnet_name" {
 variable "spoke_vnet_address_space" {
   description = "Specifies the address space of the spoke virtual network"
   type        = list(string)
-  default     = [""]
+  #default     = [""]
 }
 
 variable "spoke_vnet_rg_name" {
@@ -152,7 +163,7 @@ variable "spoke_gateway_subnet_name" {
 variable "spoke_gateway_subnet_address_prefixes" {
   description = "Specifies the address prefix of the gateway subnet"
   type        = list(string)
-  default     = [""]
+  #default     = [""]
 }
 
 variable "spoke_endpoint_subnet_name" {
@@ -165,6 +176,26 @@ variable "spoke_endpoint_subnet_address_prefixes" {
   description = "Specifies the address prefix of the endpoint subnet"
   type        = list(string)
   default     = [""]
+}
+
+# ========================== network security groups =====================
+
+variable "nsg_suffix" {
+  type        = string
+  default     = "nsg"
+  description = "Suffix of the network security resource that's combined with name of the network security group."
+}
+
+variable "spoke_nsg_name" {
+  description = "Name of the spoke network security group"
+  type        = string
+  default     = ""
+}
+
+variable "nsg_hub_endpoint_subnet_prefix" {
+  description = "Specifies the address space of the hub endpoint subnet"
+  type        = string
+  #default     = [""]
 }
 
 # ========================== bastion host ================================

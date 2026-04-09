@@ -39,6 +39,17 @@ module "spoke_network" {
 
 }
 
+# ========================== network security groups ==========================
+
+module "spoke_nsg" {
+  source                     = "./modules/nsg"
+  nsg_name                   = lower("${var.spoke_nsg_name}-${local.environment}-${var.nsg_suffix}")
+  nsg_location               = module.spoke_network.vnet_location
+  nsg_rg_name                = module.spoke_rg.resource_group_name
+  hub_endpoint_subnet_prefix = var.nsg_hub_endpoint_subnet_prefix
+  rg_name                    = module.spoke_rg.resource_group_name
+}
+
 /*hub_vnet_rg_name                     = var.hub_vnet_rg_name
   hub_location                         = var.hub_location
   hub_vnet_location                    = var.hub_location

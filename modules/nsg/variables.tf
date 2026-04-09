@@ -18,9 +18,9 @@ variable "nsg_rg_name" {
   default     = ""
 }
 
-variable "hub_subnet_prefix" {
+variable "hub_endpoint_subnet_prefix" {
   description = "Specifies the address prefix of the hub subnet"
-  type        = list(string)
+  type        = string
   #default     = [""]
 }
 
